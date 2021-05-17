@@ -54,7 +54,7 @@ app.get('/', function(req, res) {
     if (req.session.is_logined == true) { // 로그인이 되있는 상태면
         res.render('main', { // main 페이지로간다
             is_logined: req.session.is_logined,
-            id: req.session.id
+            id: req.session.userId
         });
     } else { // 로그인이 안되어있다면
         res.render('index', { // index 페이지로 간다
@@ -62,6 +62,7 @@ app.get('/', function(req, res) {
         });
     }
 });
+
 
 // 회원가입
 app.get('/register', function(req, res) {
@@ -112,16 +113,14 @@ app.post('/login', (req, res) => {
             console.log('로그인 성공');
             // 세션에 추가
             req.session.is_logined = true;
-            req.session.id = data.id;
-            req.session.pw = data.pw;
-            req.session.hobby = data.hobby;
-            req.session.save(function() { // 세션 스토어에 적용하는 작업
-                res.render('main', { // 정보전달
-                    id: data[0].id,
-                    hobby: data[0].hobby,
-                    is_logined: true
-                });
+            console.log(data[0].id);
+            req.session.userId = data[0].id;
+            //req.session.pw = data[0].pw;
+            req.session.hobby = data[0].hobby;
+            req.session.save(function() {
+                res.redirect('/main');
             });
+
         } else {
             console.log('로그인 실패');
             res.render('login', { pass: false });
@@ -142,17 +141,40 @@ app.get('/index', function(req, res) {
     res.render('index.ejs');
 });
 
-app.get('/blog', function(req, res) {
-    res.render('blog.ejs');
+// 정보 변경
+app.get('/change', (req, res) => {
+    console.log('정보 변경 중');
+    res.render('change');
 });
 
-app.get('/youtube', function(req, res) {
-    res.render('youtube.ejs');
+app.post('/change', function(req, res) {
+    console.log('정보 변경 중')
+    const body = req.body;
+    const id = req.session.userId;
+    const hobby = body.hobby;
+    console.log(id);
+
+    conn.query('UPDATE userData SET hobby=? where id=?', [hobby, id], function(err, data) {
+        if (err) {
+            console.log(err);
+            res.status(404).send('Server Error');
+        } else {
+            req.session.hobby = hobby;
+            req.session.save(function() {
+                res.redirect('/main');
+            });
+        }
+    });
 });
 
-app.get('/soccer', function(req, res) {
-    res.render('soccer.ejs');
-});
+app.get('/main', (req, res) => {
+    console.log(req.session.userId);
+    res.render('main', { // 정보전달
+        id: req.session.userId,
+        hobby: req.session.hobby,
+        is_logined: true
+    });
+})
 
 // /list 페이지일때
 app.get('/list', function(req, res) {
