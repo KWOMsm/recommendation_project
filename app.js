@@ -4,44 +4,28 @@
 // 공부 참고
 
 var fs = require('fs');
+var express = require('express'); // Express 사용
+var db_config = require(__dirname + '/config/database.js'); // database.js 파일을 불러와서 사용 (mysql 정보있음)
+var conn = db_config.init(); // database.js에 있는 init 함수 이용
+db_config.connect(conn); // database.js에 있는 connect 함수로 연결
 
-// node.js의 웹프레임워크 사용하면 좋다.
-// Express 사용
-var express = require('express');
-var app = express();
-
-// database.js 파일을 불러와서 사용 (mysql 정보있음)
-var db_config = require(__dirname + '/config/database.js');
-// database.js에 있는 init 함수 이용
-var conn = db_config.init();
-
-// 최근부터 bodyParser에 있는 기능을 express에서 수행할 수 있음
-//var bodyParser = require('body-parser');
-
-var session = require('express-session');
-//var crypto = require('crypto');
+var session = require('express-session'); // 세션 기능
 var FileStore = require('session-file-store')(session);
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser'); // 쿠기 기능
+//var crypto = require('crypto');
 
+const ejsLint = require('ejs-lint');
 
-// database.js에 있는 connect 함수로 연결
-db_config.connect(conn);
+// 유튜브 정보 가져오는 파일 부르기
+var youtubeData = require('./youtube.js');
 
-// view 경로 설정
-app.set('views', __dirname + '/views');
-
+var app = express();
+app.set('views', __dirname + '/views'); // view 경로 설정
 app.use(express.static('views'));
-
-// 화면 engine을 ejs로 설정
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // 화면 engine을 ejs로 설정
 app.engine('html', require('ejs').renderFile);
-
-// bodyParser의 기능인데 express로 사용가능
-app.use(express.json());
-
-// https://sjh836.tistory.com/154
-app.use(express.urlencoded({ extended: false }));
-
+app.use(express.json()); // bodyParser의 기능인데 express로 사용가능
+app.use(express.urlencoded({ extended: false })); // https://sjh836.tistory.com/154
 app.use(session({
     secret: 'kwonSM',
     resave: false,
@@ -49,13 +33,12 @@ app.use(session({
     store: new FileStore()
 }));
 
+
+
 // 기본 경로일때는 Root 출력
 app.get('/', function(req, res) {
     if (req.session.is_logined == true) { // 로그인이 되있는 상태면
-        res.render('main', { // main 페이지로간다
-            is_logined: req.session.is_logined,
-            id: req.session.userId
-        });
+        res.redirect('/main');
     } else { // 로그인이 안되어있다면
         res.render('index', { // index 페이지로 간다
             is_logined: false
@@ -63,6 +46,31 @@ app.get('/', function(req, res) {
     }
 });
 
+// main 페이지
+app.get('/main', (req, res) => {
+    youtubeData.parse(req.session.hobby);
+
+    function readData() {
+        const dataBuffer = fs.readFileSync('./youtube_title.json');
+
+        const dataJSON = dataBuffer.toString();
+        const datas = JSON.parse(dataJSON);
+
+        res.render('main', { // 정보전달
+            id: req.session.userId,
+            hobby: req.session.hobby,
+            is_logined: true,
+            datas: datas
+        });
+    }
+    setTimeout(readData, 1000);
+
+});
+
+// 초기 화면
+app.get('/index', function(req, res) {
+    res.render('index.ejs');
+});
 
 // 회원가입
 app.get('/register', function(req, res) {
@@ -113,7 +121,6 @@ app.post('/login', (req, res) => {
             console.log('로그인 성공');
             // 세션에 추가
             req.session.is_logined = true;
-            console.log(data[0].id);
             req.session.userId = data[0].id;
             //req.session.pw = data[0].pw;
             req.session.hobby = data[0].hobby;
@@ -135,10 +142,6 @@ app.get('/logout', (req, res) => {
         // 세션 파괴후 할 것들
         res.redirect('/');
     });
-});
-
-app.get('/index', function(req, res) {
-    res.render('index.ejs');
 });
 
 // 정보 변경
@@ -164,45 +167,6 @@ app.post('/change', function(req, res) {
                 res.redirect('/main');
             });
         }
-    });
-});
-
-app.get('/main', (req, res) => {
-    console.log(req.session.userId);
-    res.render('main', { // 정보전달
-        id: req.session.userId,
-        hobby: req.session.hobby,
-        is_logined: true
-    });
-})
-
-// /list 페이지일때
-app.get('/list', function(req, res) {
-    // sql문 작성
-    var sql = 'SELECT * FROM userInfo';
-
-    // db에 query를 날린다. 1번째 인자로 sql문과, 배열 안에 담긴 값들, 그리고 함수를 전달한다.
-    conn.query(sql, function(err, rows, fields) {
-        if (err) console.log('query is not excuted. select fail...\n' + err); // 오류 났을 때
-        else res.render('list.ejs', { list: rows });
-        // list.ejs 파일에 
-    });
-});
-
-app.get('/write', function(req, res) {
-    res.render('write.ejs');
-});
-
-app.post('/writeAf', function(req, res) {
-    var body = req.body;
-    console.log(body);
-
-    var sql = 'INSERT INTO userInfo(id, userName, interest) VALUES(?, ?, ?)';
-    var params = [body.id, body.userName, body.interest];
-    console.log(sql);
-    conn.query(sql, params, function(err) {
-        if (err) console.log('query is not excuted. insert fail...\n' + err);
-        else res.redirect('/list', );
     });
 });
 

@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css"/>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
-
     <style>
         .swiper-container {
             width: 60vw;
@@ -59,10 +58,11 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <span class="logo"><img src="images/logo.svg" alt=""/></span>
+            <span class="logo"><img src="images/logo.svg" alt="" /></span>
             <h1>관심사 추천 서비스</h1>
             <p>
-                <%= id %> 님 환영합니다
+                <%= id %> 님 환영합니다 <br> 선택하신 취미 :
+                    <%= hobby %>
             </p>
         </header>
 
@@ -91,51 +91,16 @@
 
                         <div class="swiper-container mySwiper ">
                             <div class="swiper-wrapper ">
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/F-FvDop1Ve4 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
+                                <% for ( let data in datas) { %>
+                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId; %>
+                                        <div class="swiper-slide ">
+                                            <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
+                                                player " frameborder="0 " allow="accelerometer; autoplay;
+                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                            </iframe>
 
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/u1t7XyzzdTo " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/jUSTv7p3Bs0 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/wy9mePzdEQE " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/YVvNNyXUzi4 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/cNjs7_xBS0g " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/4zLsCqAr6tg " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/5Dk4LyG7uac " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
-                                <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/dZxkoJgccJY " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-									</iframe>
-                                </div>
-
+                                        </div>
+                                        <% } %>
                             </div>
 
                             <div class="swiper-button-next "></div>
@@ -171,32 +136,33 @@
                 <ul class="features ">
                     <li>
                         <span class="image ">
-							<img src="images/blog_logo.png " style="position:absoulte;width:100%;height:50%; ">
-							</p>
-							<h3>블로그 글 검색 결과</h3>
-							<p></p>
-					</li>
-				</ul>
-				<footer class="major ">
-					<ul class="actions special ">
-						<li><a href="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
-								class="button primary " target="_blank">Learn More</a></li>
-					</ul>
-				</footer>
-			</section>
+                            <img src="images/blog_logo.png " style="position:absoulte;width:100%;height:50%; ">
+                            </p>
+                            <h3>블로그 글 검색 결과</h3>
+                            <p></p>
+                    </li>
+                </ul>
+                <footer class="major ">
+                    <ul class="actions special ">
+                        <li><a href="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
+                                class="button primary " target="_blank">Learn More</a></li>
+                    </ul>
+                </footer>
+            </section>
 
             <!-- 뉴스 -->
-			<section id="second" class="main special ">
-				<header class="major ">
-					<h2>뉴스</h2>
-					<p>뉴스 기사 제공</p>
-				</header>
-				<footer class="major ">
-					<ul class="actions special ">
-						<li><a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0" class="button primary " target="_blank">Get Started</a></li>
-					</ul>
-				</footer>
-			</section>
+            <section id="second" class="main special ">
+                <header class="major ">
+                    <h2>뉴스</h2>
+                    <p>뉴스 기사 제공</p>
+                </header>
+                <footer class="major ">
+                    <ul class="actions special ">
+                        <li><a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
+                                class="button primary " target="_blank">Get Started</a></li>
+                    </ul>
+                </footer>
+            </section>
 
             <!-- 로그아웃 -->
             <section id="cta" class="main special">

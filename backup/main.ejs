@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>추천 서비스</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+
+    <style>
+        .swiper-container {
+            width: 60vw;
+            height: 50vh;
+            max-width: 100vw;
+            max-height: 300vh;
+            min-height: 0;
+            min-width: 0;
+            background-color: white;
+        }
+        
+        .swiper-slide {
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        
+        .swiper-wrapper {
+            max-height: 300vh;
+            height: 100%;
+            display: flex;
+        }
+        
+        .swiper-slide iframe {
+            display: inline-block;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><img src="images/logo.svg" alt=""/></span>
+            <h1>관심사 추천 서비스</h1>
+            <p>
+                <%= id %> 님 환영합니다
+            </p>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="active">유튜브</a></li>
+                <li><a href="#first">블로그</a></li>
+                <li><a href="#second">뉴스</a></li>
+                <li><a href="#cta">로그아웃</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- 유튜브 -->
+            <section id="intro" class="main special">
+                <div class=" spotlight ">
+                    <div class="content ">
+                        <header class="major ">
+                            <h2>유튜브</h2>
+                        </header>
+                        <p>유튜브 영상을 제공합니다.</p>
+                        <!-- Swiper -->
+
+                        <div class="swiper-container mySwiper ">
+                            <div class="swiper-wrapper ">
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/F-FvDop1Ve4 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/u1t7XyzzdTo " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/jUSTv7p3Bs0 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/wy9mePzdEQE " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/YVvNNyXUzi4 " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/cNjs7_xBS0g " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/4zLsCqAr6tg " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/5Dk4LyG7uac " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="https://www.youtube.com/embed/dZxkoJgccJY " title="YouTube video player " frameborder="0 " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+									</iframe>
+                                </div>
+
+                            </div>
+
+                            <div class="swiper-button-next "></div>
+                            <div class="swiper-button-prev "></div>
+                        </div>
+
+                        <!-- Swiper JS -->
+                        <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                        <!-- Initialize Swiper -->
+                        <script>
+                            var swiper = new Swiper(".swiper-container ", {
+                                loop: true,
+                                navigation: {
+                                    nextEl: ".swiper-button-next ",
+                                    prevEl: ".swiper-button-prev ",
+                                },
+                            });
+                        </script>
+
+                        <br>
+
+                        <li style="list-style-type:none"><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%8F%AC%EC%B8%A0" class="button primary" target="_blank">Learn More</a></li>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 블로그 -->
+            <section id="first" class="main special ">
+                <header class="major ">
+                    <h2>블로그</h2>
+                </header>
+                <ul class="features ">
+                    <li>
+                        <span class="image ">
+							<img src="images/blog_logo.png " style="position:absoulte;width:100%;height:50%; ">
+							</p>
+							<h3>블로그 글 검색 결과</h3>
+							<p></p>
+					</li>
+				</ul>
+				<footer class="major ">
+					<ul class="actions special ">
+						<li><a href="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
+								class="button primary " target="_blank">Learn More</a></li>
+					</ul>
+				</footer>
+			</section>
+
+            <!-- 뉴스 -->
+			<section id="second" class="main special ">
+				<header class="major ">
+					<h2>뉴스</h2>
+					<p>뉴스 기사 제공</p>
+				</header>
+				<footer class="major ">
+					<ul class="actions special ">
+						<li><a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0" class="button primary " target="_blank">Get Started</a></li>
+					</ul>
+				</footer>
+			</section>
+
+            <!-- 로그아웃 -->
+            <section id="cta" class="main special">
+                <header class="major">
+                    <h2>로그아웃</h2>
+                    <p>감사합니다.</p>
+                </header>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="/logout" class="button primary">로그아웃</a></li>
+                        <li><a href="/change" class="button">정보 변경</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+        </div>
+
+        <!-- 맨 아래 정보 -->
+        <footer id="footer">
+            <section>
+                <h2>빅데융스</h2>
+                <p>권성민, 안효리, 이원준, 신희진</p>
+                <ul class="actions">
+                    <li><a href="https://github.com/KWOMsm/recommendation_project" class="button">Github</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Etiam feugiat</h2>
+                <dl class="alt">
+                    <dt>Address</dt>
+                    <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
+                    <dt>Phone</dt>
+                    <dd>(000) 000-0000 x 0000</dd>
+                    <dt>Email</dt>
+                    <dd><a href="#">information@untitled.tld</a></dd>
+                </dl>
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a>
+                    </li>
+                    <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+                    <li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
+                </ul>
+            </section>
+            </footer>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
