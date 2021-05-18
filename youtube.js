@@ -65,5 +65,7 @@ module.exports = {
 
             console.log('json complete');
         });
+
+        return optionParams.q;
     }
 };

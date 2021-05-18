@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
 
 // main 페이지
 app.get('/main', (req, res) => {
-    youtubeData.parse(req.session.hobby);
+    var search = youtubeData.parse(req.session.hobby);
 
     function readData() {
         const dataBuffer = fs.readFileSync('./youtube_title.json');
@@ -60,7 +60,8 @@ app.get('/main', (req, res) => {
             id: req.session.userId,
             hobby: req.session.hobby,
             is_logined: true,
-            datas: datas
+            datas: datas,
+            search: search
         });
     }
     setTimeout(readData, 1000);
