@@ -52,7 +52,6 @@
 </head>
 
 <body class="is-preload">
-
     <!-- Wrapper -->
     <div id="wrapper">
 
@@ -69,35 +68,80 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="#intro" class="active">유튜브</a></li>
-                <li><a href="#first">블로그</a></li>
-                <li><a href="#second">뉴스</a></li>
-                <li><a href="#cta">로그아웃</a></li>
+                <% if (hobby=='sports' ) { %>
+                    <% var krnameHobby = "운동" %>
+                        <% var first='수영' ; %>
+                            <% var second='걷기' ; %>
+                                <% var third='다이어트' ; %>
+                                    <% var fourth='앱 추천' ; %>
+                                        <li><a href="#intro" class="active">수영</a></li>
+                                        <li><a href="#first">걷기</a></li>
+                                        <li><a href="#second">다이어트</a></li>
+                                        <li><a href="#cta">앱 추천</a></li>
+                                        <% } else if (hobby=='cook' ) { %>
+                                            <% var krnameHobby = "요리" %>
+                                                <% var first='한식' ; %>
+                                                    <% var second='중식' ; %>
+                                                        <% var third='일본음식' ; %>
+                                                            <% var fourth='앱 추천' ; %>
+                                                                <li><a href="#intro" class="active">한식</a></li>
+                                                                <li><a href="#first">중식</a></li>
+                                                                <li><a href="#second">일식</a></li>
+                                                                <li><a href="#cta">앱 추천</a></li>
+                                                                <% } else if (hobby=='game' ) { %>
+                                                                    <% var krnameHobby = "게임" %>
+                                                                        <% var first='컴퓨터' ; %>
+                                                                            <% var second='콘솔' ; %>
+                                                                                <% var third='모바일' ; %>
+                                                                                    <% var fourth='앱 추천' ; %>
+                                                                                        <li><a href="#intro" class="active">컴퓨터</a>
+                                                                                        </li>
+                                                                                        <li><a href="#first">콘솔</a></li>
+                                                                                        <li><a href="#second">모바일</a></li>
+                                                                                        <li><a href="#cta">앱 추천</a></li>
+                                                                                        <% } else if (hobby=='travel' ) { %>
+                                                                                            <% var krnameHobby = "여행" %>
+                                                                                                <% var first='국내' ; %>
+                                                                                                    <% var second='해외' ; %>
+                                                                                                        <% var third='맛집' ; %>
+                                                                                                            <% var fourth='앱 추천' ; %>
+                                                                                                                <li><a href="#intro" class="active">국내</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#first">해외</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#second">맛집</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#cta">앱 추천</a>
+                                                                                                                </li>
+                                                                                                                <% } %>
             </ul>
         </nav>
 
         <!-- Main -->
         <div id="main">
 
-            <!-- 유튜브 -->
+            <!-- first section -->
             <section id="intro" class="main special">
                 <div class=" spotlight ">
                     <div class="content ">
                         <header class="major ">
-                            <h2>유튜브</h2>
+                            <h2>
+                                <%= first %>
+                            </h2>
                         </header>
-                        <p>유튜브 영상을 제공합니다.</p>
-                        <!-- Swiper -->
 
+                        <!-- Swiper -->
+                        <!-- 유튜브 나오는 부분-->
                         <div class="swiper-container mySwiper ">
                             <div class="swiper-wrapper ">
                                 <% for ( let data in datas) { %>
-                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId; %>
+                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId;
+                                        %>
                                         <div class="swiper-slide ">
                                             <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
                                                 player " frameborder="0 " allow="accelerometer; autoplay;
                                                 clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
-                                            </iframe>
+                                    </iframe>
 
                                         </div>
                                         <% } %>
@@ -122,59 +166,152 @@
                         </script>
 
                         <br>
-                        <% var link = "https://www.youtube.com/results?search_query=" + search; %>
-                            <li style="list-style-type:none"><a href="<%= link %>" class="button primary" target="_blank">Learn More</a></li>
+                        <ul class="actions special ">
+                            <li>
+                                <% var link="https://www.youtube.com/results?search_query=" + first; %>
+                                    <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                            </li>
+                            <li>
+                                <% var link="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=" + first;
+                                    %>
+                                    <a href="<%= link %>" class="button primary " target="_blank">블로그</a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </section>
 
-            <!-- 블로그 -->
+            <!-- second section -->
             <section id="first" class="main special ">
                 <header class="major ">
-                    <h2>블로그</h2>
+                    <h2>
+                        <%= second %>
+                    </h2>
                 </header>
-                <ul class="features ">
-                    <li>
-                        <span class="image ">
-                            <img src="images/blog_logo.png " style="position:absoulte;width:100%;height:50%; ">
-                            </p>
-                            <h3>블로그 글 검색 결과</h3>
-                            <p></p>
-                    </li>
-                </ul>
+                <!-- Swiper -->
+                <!-- 유튜브 나오는 부분-->
+                <div class="swiper-container mySwiper ">
+                    <div class="swiper-wrapper ">
+                        <% for ( let data2 in datas2) { %>
+                            <% let videoId=datas2[data2].id; let url='https://www.youtube.com/embed/' + videoId;
+                                        %>
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
+                                                player " frameborder="0 " allow="accelerometer; autoplay;
+                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div class="swiper-button-next "></div>
+                    <div class="swiper-button-prev "></div>
+                </div>
+
+                <!-- Swiper JS -->
+                <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".swiper-container ", {
+                        loop: true,
+                        navigation: {
+                            nextEl: ".swiper-button-next ",
+                            prevEl: ".swiper-button-prev ",
+                        },
+                    });
+                </script>
                 <footer class="major ">
                     <ul class="actions special ">
-                        <li><a href="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
-                                class="button primary " target="_blank">Learn More</a></li>
+                        <li>
+                            <% var link="https://www.youtube.com/results?search_query=" + second; %>
+                                <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                        </li>
+                        <li>
+                            <% var link="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=" + second;
+                                %>
+                                <a href="<%= link %>" class="button primary " target="_blank">블로그</a>
+                        </li>
                     </ul>
                 </footer>
             </section>
 
-            <!-- 뉴스 -->
+            <!-- third section -->
             <section id="second" class="main special ">
                 <header class="major ">
-                    <h2>뉴스</h2>
-                    <p>뉴스 기사 제공</p>
+                    <h2>
+                        <%= third %>
+                    </h2>
                 </header>
+                <!-- Swiper -->
+                <!-- 유튜브 나오는 부분-->
+                <div class="swiper-container mySwiper ">
+                    <div class="swiper-wrapper ">
+                        <% for ( let data3 in datas3) { %>
+                            <% let videoId=datas3[data3].id; let url='https://www.youtube.com/embed/' + videoId;
+                                        %>
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
+                                                player " frameborder="0 " allow="accelerometer; autoplay;
+                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div class="swiper-button-next "></div>
+                    <div class="swiper-button-prev "></div>
+                </div>
+
+                <!-- Swiper JS -->
+                <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".swiper-container ", {
+                        loop: true,
+                        navigation: {
+                            nextEl: ".swiper-button-next ",
+                            prevEl: ".swiper-button-prev ",
+                        },
+                    });
+                </script>
                 <footer class="major ">
                     <ul class="actions special ">
-                        <li><a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%8A%A4%ED%8F%AC%EC%B8%A0"
-                                class="button primary " target="_blank">Get Started</a></li>
+                        <li>
+                            <% var link="https://www.youtube.com/results?search_query=" + third; %>
+                                <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                        </li>
+                        <li>
+                            <% var link="https://search.naver.com/search.naver?where=view&sm=tab_jum&query=" + third; %>
+                                <a href="<%= link %>" class="button primary " target="_blank">블로그</a>
+                        </li>
                     </ul>
                 </footer>
             </section>
 
-            <!-- 로그아웃 -->
+            <!-- fourth section -->
             <section id="cta" class="main special">
                 <header class="major">
-                    <h2>로그아웃</h2>
-                    <p>감사합니다.</p>
+                    <h2>
+                        <%= fourth %>
+                    </h2>
                 </header>
+
                 <footer class="major">
-                    <ul class="actions special">
-                        <li><a href="/logout" class="button primary">로그아웃</a></li>
-                        <li><a href="/change" class="button">정보 변경</a></li>
-                    </ul>
+                    <section>
+                        <h2>어플을 추천해드립니다.</h2>
+                        <ul class="actions special">
+                            <li>
+
+                                <% var link="https://play.google.com/store/search?q=" + krnameHobby + "&c=apps"; %>
+                                    <a href="<%= link %>" class="button primary " target="_blank">Google Play</a>
+                            </li>
+                        </ul>
+                    </section>
                 </footer>
             </section>
 
@@ -183,43 +320,42 @@
         <!-- 맨 아래 정보 -->
         <footer id="footer">
             <section>
-                <h2>빅데융스</h2>
-                <p>권성민, 안효리, 이원준, 신희진</p>
-                <ul class="actions">
-                    <li><a href="https://github.com/KWOMsm/recommendation_project" class="button">Github</a></li>
+                <h2>로그아웃</h2>
+                <p>감사합니다.</p>
+                <ul class="actions ">
+                    <li><a href="/logout" class="button ">로그아웃</a></li>
+                    <li><a href="/change" class="button ">정보 변경</a></li>
                 </ul>
             </section>
             <section>
-                <h2>Etiam feugiat</h2>
+                <h2>빅데융스</h2>
                 <dl class="alt">
-                    <dt>Address</dt>
-                    <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-                    <dt>Phone</dt>
-                    <dd>(000) 000-0000 x 0000</dd>
-                    <dt>Email</dt>
-                    <dd><a href="#">information@untitled.tld</a></dd>
+                    <dt>권성민</dt>
+                    <dd>컴퓨터공학과 20165104</dd>
+                    <dt>안효리</dt>
+                    <dd>데이터융합스쿨 20180000</dd>
+                    <dt>이원준</dt>
+                    <dd>빅데이터학과 20160000</dd>
+                    <dt>신희진</dt>
+                    <dd>데이터융합스쿨 20180000</dd>
                 </dl>
                 <ul class="icons">
-                    <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a>
+                    <li><a href="https://github.com/KWOMsm/recommendation_project" class="icon brands fa-github alt"><span class="label">GitHub</span></a>
                     </li>
-                    <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
                 </ul>
             </section>
-            </footer>
+        </footer>
 
-        </div>
+    </div>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

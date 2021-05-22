@@ -18,10 +18,6 @@ const ejsLint = require('ejs-lint');
 
 // 유튜브 정보 가져오는 파일 부르기
 var youtubeData = require('./youtube.js');
-var youtubeData2 = require('./youtube2.js');
-var youtubeData3 = require('./youtube3.js');
-//var userTitle = require('./title.js');
-//var recommend = require('./recommendation.js');
 
 var app = express();
 app.set('views', __dirname + '/views'); // view 경로 설정
@@ -53,43 +49,20 @@ app.get('/', function(req, res) {
 // main 페이지
 app.get('/main', (req, res) => {
     var search = youtubeData.parse(req.session.hobby);
-    youtubeData2.parse(req.session.hobby);
-    youtubeData3.parse(req.session.hobby);
-    //console.log('main:', req.session.title);
-    /*
-    if (req.session.title) {
-        recommend.rec(req.session.videoId, req.session.title);
-    }
-    */
 
     function readData() {
-        var dataBuffer = fs.readFileSync('./youtube_title.json');
-        var dataBuffer2 = fs.readFileSync('./youtube_title2.json');
-        var dataBuffer3 = fs.readFileSync('./youtube_title3.json');
-        /*
-        if (req.session.title) {
-            dataBuffer = fs.readFileSync('./recommend.json');
-        }
-        */
+        const dataBuffer = fs.readFileSync('./youtube_title.json');
+
         const dataJSON = dataBuffer.toString();
         const datas = JSON.parse(dataJSON);
-
-        const dataJSON2 = dataBuffer2.toString();
-        const datas2 = JSON.parse(dataJSON2);
-
-        const dataJSON3 = dataBuffer3.toString();
-        const datas3 = JSON.parse(dataJSON3);
 
         res.render('main', { // 정보전달
             id: req.session.userId,
             hobby: req.session.hobby,
             is_logined: true,
             datas: datas,
-            datas2: datas2,
-            datas3: datas3,
             search: search
         });
-
     }
     setTimeout(readData, 1000);
 
@@ -147,37 +120,14 @@ app.post('/login', (req, res) => {
             res.render('login', { pass: false });
         } else if (id == data[0].id && pw == data[0].pw) {
             console.log('로그인 성공');
-            /*
-            conn.query('select * from userLog where id=?', [id], function(err, videoId) {
-                if (!videoId[0]) {
-                    // 세션에 추가
-                    req.session.is_logined = true;
-                    req.session.userId = data[0].id;
-                    //req.session.pw = data[0].pw;
-                    req.session.hobby = data[0].hobby;
-                    req.session.save(function() {
-                        res.redirect('/main');
-                    });
-                } else {
-                    req.session.videoId = videoId[0].videoid;
-                    req.session.title = videoId[0].log;
-                    console.log('app.js : ', req.session.title);
-                    recommend.rec(req.session.videoId, req.session.title);
-                }
-
-            })
-            */
-            function aa() {
-                // 세션에 추가
-                req.session.is_logined = true;
-                req.session.userId = data[0].id;
-                //req.session.pw = data[0].pw;
-                req.session.hobby = data[0].hobby;
-                req.session.save(function() {
-                    res.redirect('/main');
-                });
-            }
-            setTimeout(aa, 1000);
+            // 세션에 추가
+            req.session.is_logined = true;
+            req.session.userId = data[0].id;
+            //req.session.pw = data[0].pw;
+            req.session.hobby = data[0].hobby;
+            req.session.save(function() {
+                res.redirect('/main');
+            });
 
         } else {
             console.log('로그인 실패');

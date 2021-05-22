@@ -3,24 +3,21 @@ var fs = require('fs');
 
 module.exports = {
     parse: (hobby) => {
-        if (hobby == "sports") {
-            hobby = "수영";
-        } else if (hobby == "cook") {
-            hobby = "한식";
-        } else if (hobby == "game") {
-            hobby = "컴퓨터";
-        } else if (hobby == "travel") {
-            hobby = "국내여행";
+
+        if (hobby == "movie") {
+            hobby = "영화";
+        } else if (hobby == "sports") {
+            hobby = "스포츠";
+        } else if (hobby == "music") {
+            hobby = "음악";
         }
-
-
         var optionParams = {
             q: hobby,
             part: "snippet",
-            key: "AIzaSyCi4_ddKMtLx89VhyZYs9ypGPWJCW5CZVg",
+            key: "AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk",
             type: "video",
             regionCode: "KR",
-            maxResults: 5
+            maxResults: 10
         };
 
         optionParams.q = encodeURI(optionParams.q); // 한글 인코딩
@@ -53,7 +50,6 @@ module.exports = {
                         temp = false;
                         break;
                     }
-
                 }
                 if (temp) {
                     // 배열에 저장
@@ -65,9 +61,9 @@ module.exports = {
             // 문자열 형태로 변환
             var dataJSON = JSON.stringify(dataArray);
             // json 파일로 저장
-            fs.writeFileSync('./youtube_title.json', dataJSON);
+            fs.writeFileSync('youtube_title.json', dataJSON);
 
-            console.log('json1 complete');
+            console.log('json complete');
         });
 
         return optionParams.q;

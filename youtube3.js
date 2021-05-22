@@ -3,14 +3,15 @@ var fs = require('fs');
 
 module.exports = {
     parse: (hobby) => {
+
         if (hobby == "sports") {
-            hobby = "수영";
+            hobby = "다이어트";
         } else if (hobby == "cook") {
-            hobby = "한식";
+            hobby = "일본음식";
         } else if (hobby == "game") {
-            hobby = "컴퓨터";
+            hobby = "모바일";
         } else if (hobby == "travel") {
-            hobby = "국내여행";
+            hobby = "맛집 추천";
         }
 
 
@@ -65,9 +66,9 @@ module.exports = {
             // 문자열 형태로 변환
             var dataJSON = JSON.stringify(dataArray);
             // json 파일로 저장
-            fs.writeFileSync('./youtube_title.json', dataJSON);
+            fs.writeFileSync('./youtube_title3.json', dataJSON);
 
-            console.log('json1 complete');
+            console.log('json3 complete');
         });
 
         return optionParams.q;
