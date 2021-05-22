@@ -13,11 +13,14 @@ module.exports = {
             hobby = "국내여행";
         }
 
+        // AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk
+        // AIzaSyCi4_ddKMtLx89VhyZYs9ypGPWJCW5CZVg
+        // AIzaSyDpbjGD2lC9iEfMY21qwCKmzqxjzHdlVmo
 
         var optionParams = {
             q: hobby,
             part: "snippet",
-            key: "AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk",
+            key: "AIzaSyDpbjGD2lC9iEfMY21qwCKmzqxjzHdlVmo",
             type: "video",
             regionCode: "KR",
             maxResults: 5
@@ -64,11 +67,12 @@ module.exports = {
 
             // 문자열 형태로 변환
             var dataJSON = JSON.stringify(dataArray);
-            if (dataJSON != []) {
+            console.log(dataJSON.length);
+            if (dataJSON.length > 2) {
                 // json 파일로 저장
                 fs.writeFileSync('./youtube_title.json', dataJSON);
+                fs.writeFileSync('./youtube_title_bak.json', dataJSON);
             }
-
 
             console.log('json1 complete');
         });

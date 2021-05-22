@@ -18,7 +18,7 @@ module.exports = {
         var optionParams = {
             q: hobby,
             part: "snippet",
-            key: "AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk",
+            key: "AIzaSyDpbjGD2lC9iEfMY21qwCKmzqxjzHdlVmo",
             type: "video",
             regionCode: "KR",
             maxResults: 5
@@ -65,9 +65,10 @@ module.exports = {
 
             // 문자열 형태로 변환
             var dataJSON = JSON.stringify(dataArray);
-            if (dataJSON != []) {
+            if (dataJSON.length > 2) {
                 // json 파일로 저장
                 fs.writeFileSync('./youtube_title3.json', dataJSON);
+                fs.writeFileSync('./youtube_title_bak3.json', dataJSON);
             }
 
             console.log('json3 complete');

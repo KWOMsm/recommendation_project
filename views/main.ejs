@@ -13,7 +13,7 @@
     </noscript>
     <style>
         .swiper-container {
-            width: 60vw;
+            width: 80vw;
             height: 50vh;
             max-width: 100vw;
             max-height: 300vh;
@@ -60,9 +60,13 @@
             <span class="logo"><img src="images/logo.svg" alt="" /></span>
             <h1>관심사 추천 서비스</h1>
             <p>
-                <%= id %> 님 환영합니다 <br> 선택하신 취미 :
-                    <%= hobby %>
+                <%= id %> 님 환영합니다
             </p>
+            <p>
+                선택하신 취미 :
+                <%= hobby %>
+            </p>
+
         </header>
 
         <!-- Nav -->
@@ -135,12 +139,9 @@
                         <div class="swiper-container mySwiper ">
                             <div class="swiper-wrapper ">
                                 <% for ( let data in datas) { %>
-                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId;
-                                        %>
+                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId; %>
                                         <div class="swiper-slide ">
-                                            <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
-                                                player " frameborder="0 " allow="accelerometer; autoplay;
-                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                            <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
                                     </iframe>
 
                                         </div>
@@ -194,12 +195,9 @@
                 <div class="swiper-container mySwiper ">
                     <div class="swiper-wrapper ">
                         <% for ( let data2 in datas2) { %>
-                            <% let videoId=datas2[data2].id; let url='https://www.youtube.com/embed/' + videoId;
-                                        %>
+                            <% let videoId=datas2[data2].id; let url='https://www.youtube.com/embed/' + videoId; %>
                                 <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
-                                                player " frameborder="0 " allow="accelerometer; autoplay;
-                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                    <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
                                     </iframe>
 
                                 </div>
@@ -250,12 +248,9 @@
                 <div class="swiper-container mySwiper ">
                     <div class="swiper-wrapper ">
                         <% for ( let data3 in datas3) { %>
-                            <% let videoId=datas3[data3].id; let url='https://www.youtube.com/embed/' + videoId;
-                                        %>
+                            <% let videoId=datas3[data3].id; let url='https://www.youtube.com/embed/' + videoId; %>
                                 <div class="swiper-slide ">
-                                    <iframe width="500 " height="300 " src="<%= url %> " title="YouTube video
-                                                player " frameborder="0 " allow="accelerometer; autoplay;
-                                                clipboard-write; encrypted-media; gyroscope; picture-in-picture " allowfullscreen>
+                                    <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
                                     </iframe>
 
                                 </div>

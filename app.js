@@ -64,21 +64,39 @@ app.get('/main', (req, res) => {
 
     function readData() {
         var dataBuffer = fs.readFileSync('./youtube_title.json');
+        var dataBuffer_bak = fs.readFileSync('./youtube_title_bak.json');
         var dataBuffer2 = fs.readFileSync('./youtube_title2.json');
+        var dataBuffer_bak2 = fs.readFileSync('./youtube_title_bak2.json');
         var dataBuffer3 = fs.readFileSync('./youtube_title3.json');
+        var dataBuffer_bak3 = fs.readFileSync('./youtube_title_bak3.json');
         /*
         if (req.session.title) {
             dataBuffer = fs.readFileSync('./recommend.json');
         }
         */
         const dataJSON = dataBuffer.toString();
-        const datas = JSON.parse(dataJSON);
+        if (dataJSON.length > 2) {
+            var datas = JSON.parse(dataJSON);
+        } else {
+            const dataJSON = dataBuffer_bak.toString();
+            var datas = JSON.parse(dataJSON);
+        }
 
         const dataJSON2 = dataBuffer2.toString();
-        const datas2 = JSON.parse(dataJSON2);
+        if (dataJSON2.length > 2) {
+            var datas2 = JSON.parse(dataJSON2);
+        } else {
+            const dataJSON2 = dataBuffer_bak2.toString();
+            var datas2 = JSON.parse(dataJSON2);
+        }
 
         const dataJSON3 = dataBuffer3.toString();
-        const datas3 = JSON.parse(dataJSON3);
+        if (dataJSON3.length > 2) {
+            var datas3 = JSON.parse(dataJSON3);
+        } else {
+            const dataJSON3 = dataBuffer_bak3.toString();
+            var datas3 = JSON.parse(dataJSON3);
+        }
 
         res.render('main', { // 정보전달
             id: req.session.userId,
