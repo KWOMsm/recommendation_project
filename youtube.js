@@ -4,7 +4,7 @@ var fs = require('fs');
 module.exports = {
     parse: (hobby) => {
         if (hobby == "sports") {
-            hobby = "수영";
+            hobby = "축구";
         } else if (hobby == "cook") {
             hobby = "한식";
         } else if (hobby == "game") {
