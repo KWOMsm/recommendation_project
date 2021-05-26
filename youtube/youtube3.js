@@ -18,7 +18,7 @@ module.exports = {
         var optionParams = {
             q: hobby,
             part: "snippet",
-            key: "AIzaSyDpbjGD2lC9iEfMY21qwCKmzqxjzHdlVmo",
+            key: "AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk",
             type: "video",
             regionCode: "KR",
             maxResults: 5
