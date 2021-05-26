@@ -17,9 +17,13 @@ var cookieParser = require('cookie-parser'); // 쿠기 기능
 const ejsLint = require('ejs-lint');
 
 // 유튜브 정보 가져오는 파일 부르기
-var youtubeData = require('./youtube.js');
-var youtubeData2 = require('./youtube2.js');
-var youtubeData3 = require('./youtube3.js');
+var youtubeData = require('./youtube/youtube.js');
+var youtubeData2 = require('./youtube/youtube2.js');
+var youtubeData3 = require('./youtube/youtube3.js');
+var blogData = require('./blog/naver_blog.js');
+var blogData2 = require('./blog/naver_blog2.js');
+var blogData3 = require('./blog/naver_blog3.js');
+
 //var userTitle = require('./title.js');
 //var recommend = require('./recommendation.js');
 
@@ -52,9 +56,11 @@ app.get('/', function(req, res) {
 
 // main 페이지
 app.get('/main', (req, res) => {
+    // 유튜브 정보 불러오기
     var search = youtubeData.parse(req.session.hobby);
     youtubeData2.parse(req.session.hobby);
     youtubeData3.parse(req.session.hobby);
+
     //console.log('main:', req.session.title);
     /*
     if (req.session.title) {
@@ -63,12 +69,12 @@ app.get('/main', (req, res) => {
     */
 
     function readData() {
-        var dataBuffer = fs.readFileSync('./youtube_title.json');
-        var dataBuffer_bak = fs.readFileSync('./youtube_title_bak.json');
-        var dataBuffer2 = fs.readFileSync('./youtube_title2.json');
-        var dataBuffer_bak2 = fs.readFileSync('./youtube_title_bak2.json');
-        var dataBuffer3 = fs.readFileSync('./youtube_title3.json');
-        var dataBuffer_bak3 = fs.readFileSync('./youtube_title_bak3.json');
+        var dataBuffer = fs.readFileSync('./youtube_json/youtube_title.json');
+        var dataBuffer_bak = fs.readFileSync('./youtube_json/youtube_title_bak.json');
+        var dataBuffer2 = fs.readFileSync('./youtube_json/youtube_title2.json');
+        var dataBuffer_bak2 = fs.readFileSync('./youtube_json/youtube_title_bak2.json');
+        var dataBuffer3 = fs.readFileSync('./youtube_json/youtube_title3.json');
+        var dataBuffer_bak3 = fs.readFileSync('./youtube_json/youtube_title_bak3.json');
         /*
         if (req.session.title) {
             dataBuffer = fs.readFileSync('./recommend.json');
@@ -112,6 +118,66 @@ app.get('/main', (req, res) => {
     setTimeout(readData, 1000);
 
 });
+
+// 블로그 창
+app.get('/blog', (req, res) => {
+    // 블로그 정보 불러오기
+    blogData.parse(req.session.hobby);
+    blogData2.parse(req.session.hobby);
+    blogData3.parse(req.session.hobby);
+
+    function readBlog() {
+        var dataBuffer = fs.readFileSync('./blog_json/blog_content.json');
+
+        const dataJSON = dataBuffer.toString();
+        var datas = JSON.parse(dataJSON);
+
+        res.render('blog', {
+            datas: datas,
+        });
+    }
+
+    setTimeout(readBlog, 1000);
+});
+
+// 블로그 창
+app.get('/blog2', (req, res) => {
+    // 블로그 정보 불러오기
+    blogData2.parse(req.session.hobby);
+
+    function readBlog() {
+        var dataBuffer2 = fs.readFileSync('./blog_json/blog_content2.json');
+
+        const dataJSON2 = dataBuffer2.toString();
+        var datas2 = JSON.parse(dataJSON2);
+
+        res.render('blog2', {
+            datas: datas2,
+        });
+    }
+
+    setTimeout(readBlog, 1000);
+});
+
+// 블로그 창
+app.get('/blog3', (req, res) => {
+    // 블로그 정보 불러오기
+    blogData3.parse(req.session.hobby);
+
+    function readBlog() {
+        var dataBuffer3 = fs.readFileSync('./blog_json/blog_content3.json');
+
+        const dataJSON3 = dataBuffer3.toString();
+        var datas3 = JSON.parse(dataJSON3);
+
+        res.render('blog3', {
+            datas: datas3,
+        });
+    }
+
+    setTimeout(readBlog, 1000);
+});
+
 
 // 초기 화면
 app.get('/index', function(req, res) {

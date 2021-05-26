@@ -5,13 +5,13 @@ module.exports = {
     parse: (hobby) => {
 
         if (hobby == "sports") {
-            hobby = "걷기";
+            hobby = "다이어트";
         } else if (hobby == "cook") {
-            hobby = "중식";
+            hobby = "일본음식";
         } else if (hobby == "game") {
-            hobby = "콘솔";
+            hobby = "모바일";
         } else if (hobby == "travel") {
-            hobby = "해외여행";
+            hobby = "맛집 추천";
         }
 
 
@@ -67,11 +67,13 @@ module.exports = {
             var dataJSON = JSON.stringify(dataArray);
             if (dataJSON.length > 2) {
                 // json 파일로 저장
-                fs.writeFileSync('./youtube_title2.json', dataJSON);
-                fs.writeFileSync('./youtube_title_bak2.json', dataJSON);
+                fs.writeFileSync('./youtube_json/youtube_title3.json', dataJSON);
+                fs.writeFileSync('./youtube_json/youtube_title_bak3.json', dataJSON);
             }
 
-            console.log('json2 complete');
+            console.log('json3 complete');
         });
+
+        return optionParams.q;
     }
 };

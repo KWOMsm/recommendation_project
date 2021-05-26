@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>추천 서비스</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><img src="images/blog_logo.png" alt="" /></span>
+            <h1>관심사 추천 서비스</h1>
+            <p>블로그</p>
+        </header>
+
+        <div id="main">
+            <% for(let data in datas) { %>
+                <% let blogTitle=datas[data].blogTitle; let blogContent=datas[data].blogContent; let blogLink=datas[data].blogLink; %>
+
+                    <!-- first section -->
+                    <section id="intro" class="main special">
+                        <div class=" spotlight ">
+                            <div class="content ">
+                                <header class="major ">
+                                    <h2>
+                                        <% blogTitle = blogTitle.replace(/\<b>/g, ''); blogTitle = blogTitle.replace(/\<\/b>/g, ''); blogTitle = blogTitle.replace(/\&amp;/g, ''); %>
+                                            <%= blogTitle %>
+                                    </h2>
+                                </header>
+
+                                <p>
+                                    <% blogContent = blogContent.replace(/\<b>/g, ''); blogContent = blogContent.replace(/\<\/b>/g, ''); blogContent = blogContent.replace(/\&amp;/g, ''); %>
+                                        <%= blogContent %>
+                                </p>
+
+                                <br>
+                                <ul class="actions special ">
+                                    <li>
+                                        <a href="<%= blogLink %>" class="button primary" target="_blank">더보기</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <% } %>
+        </div>
+
+        <!-- 맨 아래 정보 -->
+        <footer id="footer">
+            <section>
+                <h2>로그아웃</h2>
+                <p>감사합니다.</p>
+                <ul class="actions ">
+                    <li><a href="/logout" class="button ">로그아웃</a></li>
+                    <li><a href="/main" class="button ">메인 페이지</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>빅데융스</h2>
+                <dl class="alt">
+                    <dt>권성민</dt>
+                    <dd>컴퓨터공학과 20165104</dd>
+                    <dt>안효리</dt>
+                    <dd>데이터융합스쿨 20180000</dd>
+                    <dt>이원준</dt>
+                    <dd>빅데이터학과 20160000</dd>
+                    <dt>신희진</dt>
+                    <dd>데이터융합스쿨 20180000</dd>
+                </dl>
+                <ul class="icons">
+                    <li><a href="https://github.com/KWOMsm/recommendation_project" class="icon brands fa-github alt"><span class="label">GitHub</span></a>
+                    </li>
+                </ul>
+            </section>
+        </footer>
+
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -3,19 +3,17 @@ var fs = require('fs');
 
 module.exports = {
     parse: (hobby) => {
+
         if (hobby == "sports") {
-            hobby = "축구";
+            hobby = "걷기";
         } else if (hobby == "cook") {
-            hobby = "한식";
+            hobby = "중식";
         } else if (hobby == "game") {
-            hobby = "컴퓨터";
+            hobby = "콘솔";
         } else if (hobby == "travel") {
-            hobby = "국내여행";
+            hobby = "해외여행";
         }
 
-        // AIzaSyDjaHGi2E71wgSgzClgIoUKl9Q2cHk5UHk
-        // AIzaSyCi4_ddKMtLx89VhyZYs9ypGPWJCW5CZVg
-        // AIzaSyDpbjGD2lC9iEfMY21qwCKmzqxjzHdlVmo
 
         var optionParams = {
             q: hobby,
@@ -67,16 +65,13 @@ module.exports = {
 
             // 문자열 형태로 변환
             var dataJSON = JSON.stringify(dataArray);
-            console.log(dataJSON.length);
             if (dataJSON.length > 2) {
                 // json 파일로 저장
-                fs.writeFileSync('./youtube_title.json', dataJSON);
-                fs.writeFileSync('./youtube_title_bak.json', dataJSON);
+                fs.writeFileSync('./youtube_json/youtube_title2.json', dataJSON);
+                fs.writeFileSync('./youtube_json/youtube_title_bak2.json', dataJSON);
             }
 
-            console.log('json1 complete');
+            console.log('json2 complete');
         });
-
-        return optionParams.q;
     }
 };
