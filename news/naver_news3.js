@@ -7,16 +7,16 @@ var client_secret = 'OgjpZO94SF';
 module.exports = {
     parse: (hobby) => {
         if (hobby == "sports") {
-            hobby = "걷기";
+            hobby = "다이어트";
         } else if (hobby == "cook") {
-            hobby = "중국음식";
+            hobby = "일본음식";
         } else if (hobby == "game") {
-            hobby = "콘솔";
+            hobby = "모바일";
         } else if (hobby == "travel") {
-            hobby = "해외여행";
+            hobby = "맛집 추천";
         }
 
-        var api_url = 'https://openapi.naver.com/v1/search/blog?query=' + encodeURI(hobby); // json 결과
+        var api_url = 'https://openapi.naver.com/v1/search/news?query=' + encodeURI(hobby); // json 결과
 
         var options = {
             url: api_url,
@@ -30,17 +30,17 @@ module.exports = {
 
                 for (var title in titles) {
                     var data = new Object();
-                    data.blogTitle = titles[title].title;
-                    data.blogContent = titles[title].description;
-                    data.blogLink = titles[title].link;
+                    data.newsTitle = titles[title].title;
+                    data.newsContent = titles[title].description;
+                    data.newsLink = titles[title].link;
 
                     dataArray.push(data);
                 }
 
                 var dataJSON = JSON.stringify(dataArray);
-                fs.writeFileSync('./blog_json/blog_content2.json', dataJSON);
+                fs.writeFileSync('./news_json/news_content3.json', dataJSON);
 
-                console.log('blog_json complete');
+                console.log('news_json complete');
             } else {
                 res.status(response.statusCode).end();
                 console.log('error = ' + res.statusCode);

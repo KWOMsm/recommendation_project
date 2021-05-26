@@ -20,9 +20,16 @@ const ejsLint = require('ejs-lint');
 var youtubeData = require('./youtube/youtube.js');
 var youtubeData2 = require('./youtube/youtube2.js');
 var youtubeData3 = require('./youtube/youtube3.js');
+
+// 블로그 정보
 var blogData = require('./blog/naver_blog.js');
 var blogData2 = require('./blog/naver_blog2.js');
 var blogData3 = require('./blog/naver_blog3.js');
+
+// 뉴스 정보
+var newsData = require('./news/naver_news.js');
+var newsData2 = require('./news/naver_news2.js');
+var newsData3 = require('./news/naver_news3.js');
 
 //var userTitle = require('./title.js');
 //var recommend = require('./recommendation.js');
@@ -123,8 +130,6 @@ app.get('/main', (req, res) => {
 app.get('/blog', (req, res) => {
     // 블로그 정보 불러오기
     blogData.parse(req.session.hobby);
-    blogData2.parse(req.session.hobby);
-    blogData3.parse(req.session.hobby);
 
     function readBlog() {
         var dataBuffer = fs.readFileSync('./blog_json/blog_content.json');
@@ -176,6 +181,61 @@ app.get('/blog3', (req, res) => {
     }
 
     setTimeout(readBlog, 1000);
+});
+
+// 뉴스 창
+app.get('/news', (req, res) => {
+    // 블로그 정보 불러오기
+    newsData.parse(req.session.hobby);
+
+    function readNews() {
+        var dataBuffer = fs.readFileSync('./news_json/news_content.json');
+
+        const dataJSON = dataBuffer.toString();
+        var datas = JSON.parse(dataJSON);
+
+        res.render('news', {
+            datas: datas,
+        });
+    }
+
+    setTimeout(readNews, 1000);
+});
+
+app.get('/news2', (req, res) => {
+    // 블로그 정보 불러오기
+    newsData2.parse(req.session.hobby);
+
+    function readNews() {
+        var dataBuffer = fs.readFileSync('./news_json/news_content2.json');
+
+        const dataJSON = dataBuffer.toString();
+        var datas = JSON.parse(dataJSON);
+
+        res.render('news2', {
+            datas: datas,
+        });
+    }
+
+    setTimeout(readNews, 1000);
+});
+
+app.get('/news3', (req, res) => {
+    // 블로그 정보 불러오기
+    newsData3.parse(req.session.hobby);
+
+    function readNews() {
+        var dataBuffer = fs.readFileSync('./news_json/news_content3.json');
+
+        const dataJSON = dataBuffer.toString();
+        var datas = JSON.parse(dataJSON);
+
+        res.render('news3', {
+            datas: datas,
+        });
+    }
+
+    setTimeout(readNews, 1000);
 });
 
 
