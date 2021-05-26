@@ -34,13 +34,13 @@
                             <div class="content ">
                                 <header class="major ">
                                     <h2>
-                                        <% newsTitle = newsTitle.replace(/\<b>/g, ''); newsTitle = newsTitle.replace(/\<\/b>/g, ''); newsTitle = newsTitle.replace(/\&amp;/g, ''); %>
+                                        <% newsTitle = newsTitle.replace(/\<b>/g, ''); newsTitle = newsTitle.replace(/\<\/b>/g, ''); newsTitle = newsTitle.replace(/\&amp;/g, ''); newsTitle = newsTitle.replace(/\&quot;/g, ''); %>
                                             <%= newsTitle %>
                                     </h2>
                                 </header>
 
                                 <p>
-                                    <% newsContent = newsContent.replace(/\<b>/g, ''); newsContent = newsContent.replace(/\<\/b>/g, ''); newsContent = newsContent.replace(/\&amp;/g, ''); %>
+                                    <% newsContent = newsContent.replace(/\<b>/g, ''); newsContent = newsContent.replace(/\<\/b>/g, ''); newsContent = newsContent.replace(/\&amp;/g, ''); newsContent = newsContent.replace(/\&quot;/g, ''); %>
                                         <%= newsContent %>
                                 </p>
 

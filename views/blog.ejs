@@ -34,13 +34,13 @@
                             <div class="content ">
                                 <header class="major ">
                                     <h2>
-                                        <% blogTitle = blogTitle.replace(/\<b>/g, ''); blogTitle = blogTitle.replace(/\<\/b>/g, ''); blogTitle = blogTitle.replace(/\&amp;/g, ''); %>
+                                        <% blogTitle = blogTitle.replace(/\<b>/g, ''); blogTitle = blogTitle.replace(/\<\/b>/g, ''); blogTitle = blogTitle.replace(/\&amp;/g, ''); blogTitle = blogTitle.replace(/\&quot;/g, ''); %>
                                             <%= blogTitle %>
                                     </h2>
                                 </header>
 
                                 <p>
-                                    <% blogContent = blogContent.replace(/\<b>/g, ''); blogContent = blogContent.replace(/\<\/b>/g, ''); blogContent = blogContent.replace(/\&amp;/g, ''); %>
+                                    <% blogContent = blogContent.replace(/\<b>/g, ''); blogContent = blogContent.replace(/\<\/b>/g, ''); blogContent = blogContent.replace(/\&amp;/g, ''); blogContent = blogContent.replace(/\&quot;/g, ''); %>
                                         <%= blogContent %>
                                 </p>
 
