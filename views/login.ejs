@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="images/logo2.png" rel="shortcut icon" type="image/x-icon">
+    <title>추천 서비스</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <% if(pass == false) { %>
+        <script>
+            alert('로그인 실패!');
+        </script>
+        <% } %>
+</head>
+
+<body class="is-preload">
+    <section>
+        <div id="wrapper">
+            <form method="post">
+                <ul>
+                    <li>
+                        <label>아이디는</label>
+                        <input type="text" name='id' required>
+                    </li>
+                    <li>
+                        <label>비밀번호</label>
+                        <input type="password" name="pw" required>
+                    </li>
+                </ul>
+                <input type="submit" value="로그인">
+            </form>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

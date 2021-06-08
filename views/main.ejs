@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <link href="images/logo2.png" rel="shortcut icon" type="image/x-icon">
+    <title>추천 서비스</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <style>
+        .swiper-container {
+            width: 66vw;
+            height: 63vh;
+            max-width: 100vw;
+            max-height: 300vh;
+            min-height: 0;
+            min-width: 0;
+            background-color: white;
+        }
+        
+        .swiper-slide {
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        
+        .swiper-wrapper {
+            max-height: 300vh;
+            height: 100%;
+            display: flex;
+        }
+        
+        .swiper-slide iframe {
+            display: inline-block;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><img src="images/logo2.png" alt="" /></span>
+            <h1>관심사 추천 서비스</h1>
+            <p>
+                <%= id %> 님 환영합니다
+            </p>
+            <p>
+                선택하신 취미 :
+                <%= hobby %>
+            </p>
+
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <% if (hobby=='sports' ) { %>
+                    <% var krnameHobby = "운동" %>
+                        <% var first='축구' ; %>
+                            <% var second='걷기' ; %>
+                                <% var third='다이어트' ; %>
+                                    <% var fourth='앱 추천' ; %>
+                                        <li><a href="#intro" class="active">축구</a></li>
+                                        <li><a href="#first">걷기</a></li>
+                                        <li><a href="#second">다이어트</a></li>
+                                        <li><a href="#cta">앱 추천</a></li>
+                                        <% } else if (hobby=='cook' ) { %>
+                                            <% var krnameHobby = "요리" %>
+                                                <% var first='한식' ; %>
+                                                    <% var second='중식' ; %>
+                                                        <% var third='일본음식' ; %>
+                                                            <% var fourth='앱 추천' ; %>
+                                                                <li><a href="#intro" class="active">한식</a></li>
+                                                                <li><a href="#first">중식</a></li>
+                                                                <li><a href="#second">일식</a></li>
+                                                                <li><a href="#cta">앱 추천</a></li>
+                                                                <% } else if (hobby=='game' ) { %>
+                                                                    <% var krnameHobby = "게임" %>
+                                                                        <% var first='컴퓨터' ; %>
+                                                                            <% var second='콘솔' ; %>
+                                                                                <% var third='모바일' ; %>
+                                                                                    <% var fourth='앱 추천' ; %>
+                                                                                        <li><a href="#intro" class="active">컴퓨터</a>
+                                                                                        </li>
+                                                                                        <li><a href="#first">콘솔</a></li>
+                                                                                        <li><a href="#second">모바일</a></li>
+                                                                                        <li><a href="#cta">앱 추천</a></li>
+                                                                                        <% } else if (hobby=='travel' ) { %>
+                                                                                            <% var krnameHobby = "여행" %>
+                                                                                                <% var first='국내 여행' ; %>
+                                                                                                    <% var second='해외 여행' ; %>
+                                                                                                        <% var third='맛집' ; %>
+                                                                                                            <% var fourth='앱 추천' ; %>
+                                                                                                                <li><a href="#intro" class="active">국내</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#first">해외</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#second">맛집</a>
+                                                                                                                </li>
+                                                                                                                <li><a href="#cta">앱 추천</a>
+                                                                                                                </li>
+                                                                                                                <% } %>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- first section -->
+            <section id="intro" class="main special">
+                <div class=" spotlight ">
+                    <div class="content ">
+                        <header class="major ">
+                            <h2>
+                                <%= first %>
+                            </h2>
+                        </header>
+
+                        <!-- Swiper -->
+                        <!-- 유튜브 나오는 부분-->
+                        <div class="swiper-container mySwiper ">
+                            <div class="swiper-wrapper ">
+                                <% for ( let data in datas) { %>
+                                    <% let videoId=datas[data].id; let url='https://www.youtube.com/embed/' + videoId; %>
+                                        <div class="swiper-slide ">
+                                            <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
+                                    </iframe>
+
+                                        </div>
+                                        <% } %>
+                            </div>
+
+                            <div class="swiper-button-next "></div>
+                            <div class="swiper-button-prev "></div>
+                        </div>
+
+                        <!-- Swiper JS -->
+                        <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                        <!-- Initialize Swiper -->
+                        <script>
+                            var swiper = new Swiper(".swiper-container ", {
+                                loop: true,
+                                navigation: {
+                                    nextEl: ".swiper-button-next ",
+                                    prevEl: ".swiper-button-prev ",
+                                },
+                            });
+                        </script>
+
+                        <br>
+                        <ul class="actions special ">
+                            <li>
+                                <% var link="https://www.youtube.com/results?search_query=" + first; %>
+                                    <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                            </li>
+                            <li>
+                                <a href="/blog" class="button primary">블로그</a>
+                            </li>
+                            <li>
+                                <a href="/news" class="button primary">뉴스</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- second section -->
+            <section id="first" class="main special ">
+                <header class="major ">
+                    <h2>
+                        <%= second %>
+                    </h2>
+                </header>
+                <!-- Swiper -->
+                <!-- 유튜브 나오는 부분-->
+                <div class="swiper-container mySwiper ">
+                    <div class="swiper-wrapper ">
+                        <% for ( let data2 in datas2) { %>
+                            <% let videoId=datas2[data2].id; let url='https://www.youtube.com/embed/' + videoId; %>
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div class="swiper-button-next "></div>
+                    <div class="swiper-button-prev "></div>
+                </div>
+
+                <!-- Swiper JS -->
+                <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".swiper-container ", {
+                        loop: true,
+                        navigation: {
+                            nextEl: ".swiper-button-next ",
+                            prevEl: ".swiper-button-prev ",
+                        },
+                    });
+                </script>
+                <footer class="major ">
+                    <ul class="actions special ">
+                        <li>
+                            <% var link="https://www.youtube.com/results?search_query=" + second; %>
+                                <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                        </li>
+                        <li>
+                            <a href="/blog2" class="button primary">블로그</a>
+                        </li>
+                        <li>
+                            <a href="/news2" class="button primary">뉴스</a>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!-- third section -->
+            <section id="second" class="main special ">
+                <header class="major ">
+                    <h2>
+                        <%= third %>
+                    </h2>
+                </header>
+                <!-- Swiper -->
+                <!-- 유튜브 나오는 부분-->
+                <div class="swiper-container mySwiper ">
+                    <div class="swiper-wrapper ">
+                        <% for ( let data3 in datas3) { %>
+                            <% let videoId=datas3[data3].id; let url='https://www.youtube.com/embed/' + videoId; %>
+                                <div class="swiper-slide ">
+                                    <iframe width="500 " height="300 " src="<%= url %> " loading="lazy" frameborder="0 " allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div class="swiper-button-next "></div>
+                    <div class="swiper-button-prev "></div>
+                </div>
+
+                <!-- Swiper JS -->
+                <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".swiper-container ", {
+                        loop: true,
+                        navigation: {
+                            nextEl: ".swiper-button-next ",
+                            prevEl: ".swiper-button-prev ",
+                        },
+                    });
+                </script>
+                <footer class="major ">
+                    <ul class="actions special ">
+                        <li>
+                            <% var link="https://www.youtube.com/results?search_query=" + third; %>
+                                <a href="<%= link %>" class="button primary" target="_blank">더보기</a>
+                        </li>
+                        <li>
+                            <a href="/blog3" class="button primary">블로그</a>
+                        </li>
+                        <li>
+                            <a href="/news3" class="button primary">뉴스</a>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!-- fourth section -->
+            <section id="cta" class="main special">
+                <header class="major">
+                    <h2>
+                        <%= fourth %>
+                    </h2>
+                </header>
+
+                <footer class="major">
+                    <section>
+                        <h2>어플을 추천해드립니다.</h2>
+                        <ul class="actions special">
+                            <li>
+
+                                <% var link="https://play.google.com/store/search?q=" + krnameHobby + "&c=apps"; %>
+                                    <a href="<%= link %>" class="button primary " target="_blank">Google Play</a>
+                            </li>
+                        </ul>
+                    </section>
+                </footer>
+            </section>
+
+        </div>
+
+        <!-- 맨 아래 정보 -->
+        <footer id="footer">
+            <section>
+                <h2>로그아웃</h2>
+                <p>감사합니다.</p>
+                <ul class="actions ">
+                    <li><a href="/logout" class="button ">로그아웃</a></li>
+                    <li><a href="/change" class="button ">정보 변경</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>빅데융스</h2>
+                <dl class="alt">
+                    <dt>권성민</dt>
+                    <dd>컴퓨터공학과 20165104</dd>
+                    <dt>안효리</dt>
+                    <dd>데이터융합스쿨 20183227</dd>
+                    <dt>이원준</dt>
+                    <dd>빅데이터학과 20165151</dd>
+                    <dt>신희진</dt>
+                    <dd>데이터융합스쿨 20183226</dd>
+                </dl>
+                <ul class="icons">
+                    <li><a href="https://github.com/KWOMsm/recommendation_project" class="icon brands fa-github alt"><span class="label">GitHub</span></a>
+                    </li>
+                </ul>
+            </section>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
