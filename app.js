@@ -1,8 +1,3 @@
-// https://gongbu-ing.tistory.com/32 원본
-// https://gist.github.com/livelikeabel/909d5dc35e96e3f0bed0cd28cddcdeaf 
-// https://velopert.com/294
-// 공부 참고
-
 var fs = require('fs');
 var express = require('express'); // Express 사용
 var db_config = require(__dirname + '/config/database.js'); // database.js 파일을 불러와서 사용 (mysql 정보있음)
@@ -12,7 +7,6 @@ db_config.connect(conn); // database.js에 있는 connect 함수로 연결
 var session = require('express-session'); // 세션 기능
 var FileStore = require('session-file-store')(session);
 var cookieParser = require('cookie-parser'); // 쿠기 기능
-//var crypto = require('crypto');
 
 const ejsLint = require('ejs-lint');
 
@@ -31,24 +25,19 @@ var newsData = require('./news/naver_news.js');
 var newsData2 = require('./news/naver_news2.js');
 var newsData3 = require('./news/naver_news3.js');
 
-//var userTitle = require('./title.js');
-//var recommend = require('./recommendation.js');
-
 var app = express();
 app.set('views', __dirname + '/views'); // view 경로 설정
 app.use(express.static('views'));
 app.set('view engine', 'ejs'); // 화면 engine을 ejs로 설정
 app.engine('html', require('ejs').renderFile);
 app.use(express.json()); // bodyParser의 기능인데 express로 사용가능
-app.use(express.urlencoded({ extended: false })); // https://sjh836.tistory.com/154
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'kwonSM',
     resave: false,
     saveUninitialized: true,
     store: new FileStore()
 }));
-
-
 
 // 기본 경로일때는 Root 출력
 app.get('/', function(req, res) {
@@ -68,13 +57,6 @@ app.get('/main', (req, res) => {
     youtubeData2.parse(req.session.hobby);
     youtubeData3.parse(req.session.hobby);
 
-    //console.log('main:', req.session.title);
-    /*
-    if (req.session.title) {
-        recommend.rec(req.session.videoId, req.session.title);
-    }
-    */
-
     function readData() {
         var dataBuffer = fs.readFileSync('./youtube_json/youtube_title.json');
         var dataBuffer_bak = fs.readFileSync('./youtube_json/youtube_title_bak.json');
@@ -82,11 +64,7 @@ app.get('/main', (req, res) => {
         var dataBuffer_bak2 = fs.readFileSync('./youtube_json/youtube_title_bak2.json');
         var dataBuffer3 = fs.readFileSync('./youtube_json/youtube_title3.json');
         var dataBuffer_bak3 = fs.readFileSync('./youtube_json/youtube_title_bak3.json');
-        /*
-        if (req.session.title) {
-            dataBuffer = fs.readFileSync('./recommend.json');
-        }
-        */
+
         const dataJSON = dataBuffer.toString();
         if (dataJSON.length > 2) {
             var datas = JSON.parse(dataJSON);
@@ -123,7 +101,6 @@ app.get('/main', (req, res) => {
 
     }
     setTimeout(readData, 1000);
-
 });
 
 // 블로그 창
@@ -141,7 +118,6 @@ app.get('/blog', (req, res) => {
             datas: datas,
         });
     }
-
     setTimeout(readBlog, 1000);
 });
 
@@ -160,7 +136,6 @@ app.get('/blog2', (req, res) => {
             datas: datas2,
         });
     }
-
     setTimeout(readBlog, 1000);
 });
 
@@ -179,13 +154,12 @@ app.get('/blog3', (req, res) => {
             datas: datas3,
         });
     }
-
     setTimeout(readBlog, 1000);
 });
 
 // 뉴스 창
 app.get('/news', (req, res) => {
-    // 블로그 정보 불러오기
+    // 뉴스 정보 불러오기
     newsData.parse(req.session.hobby);
 
     function readNews() {
@@ -198,12 +172,11 @@ app.get('/news', (req, res) => {
             datas: datas,
         });
     }
-
     setTimeout(readNews, 1000);
 });
 
 app.get('/news2', (req, res) => {
-    // 블로그 정보 불러오기
+    // 뉴스 정보 불러오기
     newsData2.parse(req.session.hobby);
 
     function readNews() {
@@ -216,12 +189,11 @@ app.get('/news2', (req, res) => {
             datas: datas,
         });
     }
-
     setTimeout(readNews, 1000);
 });
 
 app.get('/news3', (req, res) => {
-    // 블로그 정보 불러오기
+    // 뉴스 정보 불러오기
     newsData3.parse(req.session.hobby);
 
     function readNews() {
@@ -234,7 +206,6 @@ app.get('/news3', (req, res) => {
             datas: datas,
         });
     }
-
     setTimeout(readNews, 1000);
 });
 
@@ -267,8 +238,6 @@ app.post('/register', function(req, res) {
         } else {
             console.log('회원가입 실패');
             res.render('register', { pass: false });
-            //res.send('<script>alert("회원가입 실패");</script>');
-
         }
     });
 });
@@ -291,26 +260,6 @@ app.post('/login', (req, res) => {
             res.render('login', { pass: false });
         } else if (id == data[0].id && pw == data[0].pw) {
             console.log('로그인 성공');
-            /*
-            conn.query('select * from userLog where id=?', [id], function(err, videoId) {
-                if (!videoId[0]) {
-                    // 세션에 추가
-                    req.session.is_logined = true;
-                    req.session.userId = data[0].id;
-                    //req.session.pw = data[0].pw;
-                    req.session.hobby = data[0].hobby;
-                    req.session.save(function() {
-                        res.redirect('/main');
-                    });
-                } else {
-                    req.session.videoId = videoId[0].videoid;
-                    req.session.title = videoId[0].log;
-                    console.log('app.js : ', req.session.title);
-                    recommend.rec(req.session.videoId, req.session.title);
-                }
-
-            })
-            */
             function aa() {
                 // 세션에 추가
                 req.session.is_logined = true;
@@ -322,7 +271,6 @@ app.post('/login', (req, res) => {
                 });
             }
             setTimeout(aa, 1000);
-
         } else {
             console.log('로그인 실패');
             res.render('login', { pass: false });
