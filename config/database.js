@@ -1,13 +1,18 @@
 var mysql = require('mysql');
 // ec2 껏다 킬 때마다 host 바꿔줘야함
+// 탄력적 ip로 해결
+
+// 개인정보는 감춤
+// 데이터베이스 관련 정보
 var db_info = {
-    host: '13.125.128.149',
-    port: '3306',
+    host: '&&&&',
+    port: '&&&&',
     user: 'kwonSM',
-    password: 'g5438111',
-    database: 'testDB'
+    password: '&&&&&',
+    database: '&&&&&'
 }
 
+// 데이터베이스 연결
 module.exports = {
     init: function () {
         return mysql.createConnection(db_info);
